@@ -99,7 +99,7 @@ pip install -r requirements.txt
 To test the AI code review agents on your Terraform code, run the following command in the terminal:
 
 ```bash
-python main.py
+python build_code_review_ai_agents.py
 ```
 
 This will:
@@ -150,16 +150,16 @@ In future parts of this tutorial series, we will:
 1. Integrate these AI agents into a GitHub Actions pipeline.
 2. Extend the functionality to automatically add comments to pull requests.
 
-Stay tuned for updates!
+Subscribe to the YouTube channel for notification of the next videos!
 
 ## License
 This project is licensed under the MIT License.
 
 ## Contact
-For questions or feedback, please reach out via GitHub issues
-* [youtube](youtube.com/@talkitdoit)
-* [x](x.com/talkitdoit)
-* [tiktok](tiktok.com/@talkitdoit3)
+For questions or feedback, please contact via GitHub issues or on the socials
+* [youtube.com/@talkitdoit](https://youtube.com/@talkitdoit)
+* [x.com/talkitdoit](https://x.com/talkitdoit)
+* [tiktok.com/@talkitdoit1](https://tiktok.com/@talkitdoit1)
 
 ---
 

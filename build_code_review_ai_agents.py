@@ -116,19 +116,29 @@ class OptimizationAgent(Agent):
         issues.append(comments)
         return issues
 
+# here we will update this code, to include a markdown formatter agent.
+class MarkdownFormatterAgent(Agent):
+    def format_to_markdown(self, content):
+        ic(f"formatting review content to markdown.")
+        prompt = f"Conver the following text into well-formatted Markdown:\n\n{content} and do not include any backticks."
+        markdown_content = self.generate_comments(prompt)
+        return markdown_content
+
 # Writing Comments to New File
 class ReviewAgentWithComments(Agent):
     def comment(self, issues):
         ic(f"Adding comments to file: {self.file_path}")
-        report_path = "outputs/review_report.txt"
+        report_path = "outputs/review_report.md"
         output_path = "recommit/main.tf"
-        report_content = []
+        report_content = "\n".join(issues)
+
+        # generate markdown content
+        markdown_agent = MarkdownFormatterAgent("markdown formatter", "Format review report to Markdown", self.file_path)
+        markdown_content = markdown_agent.format_to_markdown(report_content)
 
         # Write comments to report file
         with open(report_path, 'w') as report_file:
-            for issue in issues:
-                report_content.append(issue)
-                report_file.write(issue + '\n')
+                report_file.write(markdown_content)
         ic(f"Writing review report to: {report_path}")
 
         # Add inline comments to the HCL file
@@ -184,4 +194,8 @@ if __name__ == "__main__":
     # Adding comments to the file in the recommit directory
     review_agent_with_comments = ReviewAgentWithComments("commenter", "Add comments to file", "recommit/main.tf")
     review_agent_with_comments.comment(all_issues)
-    ic("Completed testing of agents")
+    ic(f"completed testing of agent. please check the file output artifacts... thank you")
+
+# end of code... now lets run this thing and see if it works :-)
+#
+# it worked :-) next video, we will continue to move this to a pipeline, on our way to full lifecycle automation for code reviews...
